@@ -29,24 +29,23 @@ struct VideoOvelay: View {
                 VStack(spacing: 20) {
                     Spacer()
                     profileImage("profile_placeholder")
-                    feedIcon("like", text: "1.2M")
-                    feedIcon("comments", text: "10.7M")
-                    feedIcon("share", text: "30.2K")
+                    actionIcon("like", text: video.likeCount.description)
+                    actionIcon("comments", text: video.commentCount.description)
+                    actionIcon("share", text: video.shareCount.description)
                     Image("music_disc")
                         .resizable()
                         .frame(width: 50, height: 50)
                 }
-                
             }
             .padding(.horizontal)
             .padding(.bottom, 8)
             
-            suggestionBar("Search Mess at inter Miami")
+            suggestionBar("Search Messi at inter Miami")
         }
     }
     
     @ViewBuilder
-    func feedIcon(_ icon: String, text: String) -> some View {
+    func actionIcon(_ icon: String, text: String) -> some View {
         VStack {
             Image(icon)
                 .iconFeedStyle()

@@ -33,8 +33,5 @@ struct VideoLayerView: UIViewRepresentable {
         return view
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
-    }
-    
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
 }
