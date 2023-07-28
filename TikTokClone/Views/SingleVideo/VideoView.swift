@@ -11,7 +11,7 @@ import AVKit
 struct VideoView: View {
     
     @State private var isMoving: Bool = false
-    var viewModel: VideoViewModel!
+    @ObservedObject var viewModel: VideoViewModel
     
     var body: some View {
         VStack {
@@ -19,16 +19,22 @@ struct VideoView: View {
                 ZStack {
                     // Display the video player using the videoPlayerFor() view builder.
                     videoPlayerFor()
-                    
+                        .onTapGesture {
+                            viewModel.toggleVideo()
+                        }
+                        .overlay {
+                            if !viewModel.isPlaying {
+                                Image(systemName: "play.fill")
+                                    .font(.system(size: 60))
+                                    .foregroundStyle(Color.white).opacity(0.4)
+                            }
+                            
+                        }
                     // Display a video overlay using the VideoOvelay() view builder with opacity based on isMoving state.
                     VideoOvelay(video: viewModel.video)
                         .opacity(!isMoving ? 1 : 0.5)
                 }
                 .background(Color.black)
-                // Display the suggestion bar overlay at the bottom of the video view.
-                .overlay(alignment: .bottom) {
-                    suggestionBar("Search Messi inter de Miami")
-                }
             }
         }
         // Track if the view is moving up or down and set the isMoving state accordingly.
@@ -44,7 +50,7 @@ struct VideoView: View {
     // View builder function to conditionally display the video player.
     @ViewBuilder
     private func videoPlayerFor() -> some View {
-        VideoLayerView(player: viewModel.videoPlayer)
+        VideoLayerView(player: viewModel.playerInstance())
     }
     
     // View builder function to display the suggestion bar at the bottom of the video view.
