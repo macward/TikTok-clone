@@ -11,7 +11,7 @@ import AVKit
 struct VideoView: View {
     
     @State private var isMoving: Bool = false
-    @StateObject var viewModel: VideoViewModel = VideoViewModel(videoPlayer: nil, video: VideoScheme.sample.first!)
+    var viewModel: VideoViewModel!
     
     var body: some View {
         VStack {

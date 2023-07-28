@@ -32,8 +32,7 @@ class FeedViewModel: ObservableObject {
     
     init() {
         for video in feedVideoItems {
-            
-            let videoPlayer = AVPlayer(playerItem: AVPlayerItem(url: video.bundleUrl))
+            let videoPlayer = AVQueuePlayer()
             let viewModel = VideoViewModel(videoPlayer:videoPlayer, video: video)
             listOfVideosVM.append(viewModel)
         }
