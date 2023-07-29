@@ -7,20 +7,22 @@
 
 import Foundation
 import AVKit
+import Combine
+
 
 class VideoViewModel: ObservableObject {
     
     var video: VideoScheme
     private var player: AVQueuePlayer
     private var playerLooper: AVPlayerLooper
-    @Published var isPlaying: Bool = false
+    @Published var isPlaying: Bool = true
+    private var cancellable = Set<AnyCancellable>()
     
     // Class initializer. Receives a VideoScheme object and creates a VideoViewModel.
     init(videoPlayer: AVQueuePlayer, video: VideoScheme) {
         self.video = video
         self.player = videoPlayer
         self.playerLooper = AVPlayerLooper(player: videoPlayer, templateItem: AVPlayerItem(url: video.bundleUrl))
-        self.isPlaying = false
     }
     
     // Function to start video playback.

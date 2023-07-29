@@ -14,20 +14,21 @@ struct FeedView: View {
     @State private var scrollProgress: CGFloat = .zero
     @State private var blockNotification: Bool = false
     
+    @EnvironmentObject var feedManager: FeedManager
+    
     var body: some View {
         VStack(spacing: 0) {
             GeometryReader { proxy in
                 ScrollView(.vertical) {
                     LazyVStack(spacing: 0) {
                         ForEach(0..<viewModel.feedVideoItems.count, id: \.self) { index in
+                            
                             VideoView(viewModel: viewModel.createViewModel(for: index))
                                 .edgesIgnoringSafeArea(.top)
                                 .containerRelativeFrame([.horizontal, .vertical])
                                 .offsetY { rect in
                                     if index == viewModel.currentIndex {
-                                        
                                         // rect.midY and proxy.size.height are the same
-                                        
                                         let centerOffset = rect.midY - (proxy.size.height / 2)
                                         let progress = centerOffset / (proxy.size.height / 2)
                                         
@@ -52,10 +53,22 @@ struct FeedView: View {
                 TopBarView()
             }
             // Fake Tab
-            FakeTabView()                
+            FakeTabView()
         }
+        .overlay(content: {
+            Image("overlay_original")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .opacity(0)
+        })
         .background(Color.black)
         .ignoresSafeArea()
+        .onAppear() {
+            viewModel.addSubscriber()
+        }
+        .task {
+            try? await viewModel.fetchInfo()
+        }
     }
 }
 

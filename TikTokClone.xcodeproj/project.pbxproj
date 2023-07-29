@@ -23,6 +23,7 @@
 		5001E2192A7264CE00224CF5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001E2182A7264CE00224CF5 /* Notifications.swift */; };
 		50820DDF2A73854D0069169D /* FakeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50820DDE2A73854D0069169D /* FakeTabView.swift */; };
 		50820DE12A7387E10069169D /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50820DE02A7387E10069169D /* TopBarView.swift */; };
+		50820DE42A73CB0E0069169D /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50820DE32A73CB0E0069169D /* IntExtensions.swift */; };
 		50997ACA2A6F15B50084F721 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50997AC92A6F15B50084F721 /* Main.swift */; };
 		50997ACE2A6F15BC0084F721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50997ACD2A6F15BC0084F721 /* Assets.xcassets */; };
 		50997AD12A6F15BC0084F721 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50997AD02A6F15BC0084F721 /* Preview Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		5001E2182A7264CE00224CF5 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		50820DDE2A73854D0069169D /* FakeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTabView.swift; sourceTree = "<group>"; };
 		50820DE02A7387E10069169D /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		50820DE32A73CB0E0069169D /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		50997AC62A6F15B50084F721 /* TikTokClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikTokClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50997AC92A6F15B50084F721 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		50997ACD2A6F15BC0084F721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 				5001E2162A723DE900224CF5 /* VideoViewModel.swift */,
 			);
 			path = SingleVideo;
+			sourceTree = "<group>";
+		};
+		50820DE22A73CAFD0069169D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				50820DE32A73CB0E0069169D /* IntExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		50997ABD2A6F15B50084F721 = {
@@ -167,6 +177,7 @@
 		50997AF42A70B25F0084F721 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				50820DE22A73CAFD0069169D /* Extensions */,
 				50997AFA2A70B2DA0084F721 /* Helpers */,
 				50997AEA2A6F31680084F721 /* Modifiers */,
 			);
@@ -311,6 +322,7 @@
 				50997AF62A70B2700084F721 /* OffsetY.swift in Sources */,
 				50997AEC2A6F317B0084F721 /* TextModifiers.swift in Sources */,
 				50997AF32A70B2250084F721 /* VideoView.swift in Sources */,
+				50820DE42A73CB0E0069169D /* IntExtensions.swift in Sources */,
 				50997ACA2A6F15B50084F721 /* Main.swift in Sources */,
 				50820DE12A7387E10069169D /* TopBarView.swift in Sources */,
 				5001E2052A71D8C000224CF5 /* VideoPlayerView.swift in Sources */,
