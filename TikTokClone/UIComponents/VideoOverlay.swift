@@ -34,13 +34,13 @@ struct VideoOvelay: View {
                     actionIcon("share", text: video.shareCount.description)
                     Image("music_disc")
                         .resizable()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 48, height: 48)
                 }
             }
-            .padding(.horizontal)
-            .padding(.bottom, 8)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 14)
             
-            suggestionBar("Search Messi at inter Miami")
+            // suggestionBar("Search Messi at inter Miami")
         }
     }
     
@@ -48,7 +48,13 @@ struct VideoOvelay: View {
     func actionIcon(_ icon: String, text: String) -> some View {
         VStack {
             Image(icon)
-                .iconFeedStyle()
+                //.iconFeedStyle()
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 30, height: 30)
+                .foregroundStyle(LinearGradient(colors: [Color.white, Color("PrimaryText")], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .shadow(color: .black.opacity(0.2), radius: 6, x: 2, y: 2)
+            
             Text(text)
                 .iconFeedTextStyle()
         }
@@ -92,7 +98,7 @@ struct VideoOvelay: View {
                 .padding(.trailing)
         }
         .foregroundStyle(Color.white)
-        .background(Color.gray.opacity(0.2))
+        .background(Color.black.opacity(0.4))
     }
 }
 

@@ -19,24 +19,32 @@ The nextVideo() function is called to move to the next video in the feed. If it'
 
 import Foundation
 import AVKit
-
+import Combine
+ 
 class FeedViewModel: ObservableObject {
     
-    // Published property for the current index in the feed.
-    @Published var currentIndex: Int = .zero
+    @Published var currentIndex: Int = -1
+    @Published var feedVideoItems: [VideoScheme] = []
+    @Published var listOfVideosVM: [VideoViewModel] = []
     
-    // Published property for the array of video items in the feed, initialized with sample data.
-    @Published var feedVideoItems: [VideoScheme] = VideoScheme.sample
+    private var cancellables = Set<AnyCancellable>()
     
-    private var listOfVideosVM: [VideoViewModel] = []
-    
-    init() {
-        for video in feedVideoItems {
-            let videoPlayer = AVQueuePlayer()
-            let viewModel = VideoViewModel(videoPlayer:videoPlayer, video: video)
-            listOfVideosVM.append(viewModel)
-        }
-        listOfVideosVM.first?.play()
+    func addSubscriber() {
+        
+        $currentIndex
+            .receive(on: DispatchQueue.main)
+            .sink { newValue in
+                if newValue < 0 { return }
+                self.playVideoWith(index: newValue)
+            }
+            .store(in: &cancellables)
+        
+        $feedVideoItems
+            .receive(on: DispatchQueue.global(qos: .userInitiated))
+            .sink { newValue in
+                if newValue.count == 0 { return }
+            }
+            .store(in: &cancellables)
     }
     
     // Function to create and return a VideoViewModel for a specific index in the feed.
@@ -58,9 +66,7 @@ class FeedViewModel: ObservableObject {
     // Notifies Notify.playNewVideo with the ID of the new video being loaded.
     func nextVideo() {
         if currentIndex == (feedVideoItems.count - 1) { return }
-        currentIndex += 1
-        pauseAllVideos()
-        playVideoWith(index: currentIndex)
+        currentIndex.increase()
     }
     
     // Function to move to the previous video in the feed.
@@ -68,9 +74,7 @@ class FeedViewModel: ObservableObject {
     // Notifies Notify.playNewVideo with the ID of the new video being loaded.
     func prevVideo() {
         if currentIndex == .zero { return }
-        currentIndex -= 1
-        pauseAllVideos()
-        playVideoWith(index: currentIndex)
+        currentIndex.decrease()
     }
     
     private func pauseAllVideos() {
@@ -80,7 +84,25 @@ class FeedViewModel: ObservableObject {
     }
     
     private func playVideoWith(index: Int) {
+        pauseAllVideos()
         listOfVideosVM[currentIndex].play()
     }
+    
+    func fetchInfo() async throws {
+//        let url = URL(string: "http://192.168.0.129:8000/")!
+//        let urlRequest = URLRequest(url: url)
+//        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+//        let dataObject = try JSONDecoder().decode([VideoScheme].self, from: data)
+        
+        // Temporal fix
+        let dataObject = VideoScheme.sample
+        
+        for video in dataObject {
+            let videoPlayer = AVQueuePlayer()
+            let viewModel = VideoViewModel(videoPlayer:videoPlayer, video: video)
+            listOfVideosVM.append(viewModel)
+        }
+        self.feedVideoItems =  dataObject
+        self.currentIndex = .zero
+    }
 }
-

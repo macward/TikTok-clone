@@ -14,16 +14,17 @@ struct TopBarView: View {
                 Image(systemName: "play.tv")
                     .foregroundStyle(Color.white)
                     .fontWeight(.semibold)
-                    .font(.system(size: 26))
+                    .font(.system(size: 24))
                 
                 Spacer()
-                HStack() {
+                HStack(spacing: 16) {
                     Text("Cerca")
-                        .foregroundStyle(Color.white.opacity(0.6))
+                        .foregroundStyle(Color("InactiveText"))
                     Text("Siguiendo")
-                        .foregroundStyle(Color.white.opacity(0.6))
+                        .foregroundStyle(Color("InactiveText"))
                     Text("Para ti")
                 }
+                .lineSpacing(0.8)
                 .foregroundStyle(Color.white)
                 .fontWeight(.semibold)
                 .font(.system(size: 18))
@@ -32,12 +33,12 @@ struct TopBarView: View {
                 Image("discover_icon")
                     .resizable()
                     .foregroundStyle(Color.white)
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
                     
             }
             .padding(.horizontal)
-            .padding(.top, 60)
+            .padding(.top, 65)
             Spacer()
         }
     }

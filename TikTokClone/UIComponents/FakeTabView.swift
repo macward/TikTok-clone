@@ -9,39 +9,47 @@ import SwiftUI
 
 struct FakeTabView: View {
     var body: some View {
-        HStack (spacing: 40) {
+        HStack {
             
-            tabIcon("Home", icon: "home_icon")
-            tabIcon("Discover", icon: "discover_icon")
+            tabIcon("Home", icon: "home_icon", active: true)
+            Spacer()
+            tabIcon("Discover", icon: "discover_icon", active: false)
+            Spacer()
             
-            Image("upload_icon")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 55)
-                
-            
-            tabIcon("Inbox", icon: "inbox_icon")
-            tabIcon("Profile", icon: "profile_icon")
+            VStack {
+                Image("upload_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                .frame(width: 42)
+                .padding(.top, 8)
+                Spacer()
+            }
+            Spacer()
+            tabIcon("Inbox", icon: "inbox_icon", active: false)
+            Spacer()
+            tabIcon("Profile", icon: "profile_icon", active: false, size: 16)
             
         }
+        .frame(height: 82)
         .background(Color.black)
-        .frame(height: 80)
         .padding(.horizontal)
     }
     
     @ViewBuilder
-    private func tabIcon(_ text: String, icon: String) -> some View {
+    private func tabIcon(_ text: String, icon: String, active: Bool = true, size: CGFloat = 20) -> some View {
         VStack {
             Image(icon)
                 .resizable()
-                .foregroundStyle(Color.white)
-                .scaledToFit()
-                .frame(width: 20, height: 20)
+                .foregroundStyle(active ? Color.white : Color("InactiveText"))
+                .aspectRatio(contentMode: .fit)
+                .frame(width: size, height: 24)
             Text(text)
-                .font(.system(size: 11))
-                .foregroundStyle(Color.white)
+                .font(.system(size: 10))
+                .foregroundStyle(active ? Color.white : Color("InactiveText"))
+            Spacer()
         }
-        
+        .frame(width: 48)
+        .padding(.top, 6)
     }
 }
 
