@@ -23,6 +23,7 @@ class VideoViewModel: ObservableObject {
         self.video = video
         self.player = videoPlayer
         self.playerLooper = AVPlayerLooper(player: videoPlayer, templateItem: AVPlayerItem(url: video.bundleUrl))
+        self.isPlaying = false
     }
     
     // Function to start video playback.
