@@ -8,7 +8,9 @@
 import SwiftUI
 import AVKit
 
-struct VideoView: View {
+struct VideoView: View, Identifiable {
+    
+    let id: UUID = UUID()
     
     @State private var isMoving: Bool = false
     @ObservedObject var viewModel: VideoViewModel

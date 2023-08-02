@@ -5,29 +5,19 @@
 //  Created by Max Ward on 26/07/2023.
 //
 
-
-
-///Explanation (CHAT GPT)
-/*
-FeedViewModel is a class that conforms to ObservableObject to allow its published properties to update the views automatically.
-The currentIndex property keeps track of the current index in the feed. It's used to know which video is currently being displayed.
-The feedVideoItems property is an array of VideoScheme representing the video items in the feed. It's initialized with sample data from VideoScheme.sample.
-The createViewModel(for index: Int) function creates a VideoViewModel for a specific index in the feed. This is used to manage individual videos in the feed.
-The video(_ index: Int) function retrieves a VideoScheme for a given index in the feed. It returns nil if the index is out of range, which is a safety check.
-The nextVideo() function is called to move to the next video in the feed. If it's already at the last video, it does nothing. It notifies Notify.playNewVideo
- */
-
 import Foundation
 import AVKit
 import Combine
  
 class FeedViewModel: ObservableObject {
     
+    // MARK: PUBLIC PROPERTIES
     @Published var currentIndex: Int = -1
-    @Published var feedVideoItems: [VideoScheme] = []
-    @Published var listOfVideosVM: [VideoViewModel] = []
+    @Published var feedVideoItems: [VideoView] = []
     
+    // MARK: PRIVATE PROPERTIES
     private var cancellables = Set<AnyCancellable>()
+    private var listOffset: Int = 4
     
     func addSubscriber() {
         
@@ -47,18 +37,10 @@ class FeedViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    // Function to create and return a VideoViewModel for a specific index in the feed.
-    func createViewModel(for index: Int) -> VideoViewModel {
-        return listOfVideosVM[index]
-    }
-    
-    // Function to retrieve a VideoScheme for a given index in the feed.
-    // Returns nil if the index is out of range.
-    func video(_ index: Int) -> VideoScheme? {
-        guard index >= 0 && index < feedVideoItems.count else {
-            return nil
-        }
-        return feedVideoItems[index]
+    private func appendVideo() {
+        let viewModel: VideoViewModel = .init(videoPlayer: AVQueuePlayer(),
+                                              video: VideoScheme.sample[(currentIndex % VideoScheme.sample.count) + listOffset])
+        feedVideoItems.append(.init(viewModel: viewModel))
     }
     
     // Function to move to the next video in the feed.
@@ -67,6 +49,13 @@ class FeedViewModel: ObservableObject {
     func nextVideo() {
         if currentIndex == (feedVideoItems.count - 1) { return }
         currentIndex.increase()
+        
+        print("index: \(self.currentIndex) - items count \(self.feedVideoItems.count) - \(VideoScheme.sample.count)")
+        
+        let nextIndex = currentIndex + listOffset
+        if nextIndex < VideoScheme.sample.count && feedVideoItems.count <= VideoScheme.sample.count {
+            self.appendVideo()
+        }
     }
     
     // Function to move to the previous video in the feed.
@@ -78,31 +67,23 @@ class FeedViewModel: ObservableObject {
     }
     
     private func pauseAllVideos() {
-        listOfVideosVM.forEach { videoViewModel in
-            videoViewModel.pause()
+        feedVideoItems.forEach { view in
+            view.viewModel.pause()
         }
     }
     
     private func playVideoWith(index: Int) {
         pauseAllVideos()
-        listOfVideosVM[currentIndex].play()
+        feedVideoItems[currentIndex].viewModel.play()
     }
     
-    func fetchInfo() async throws {
-//        let url = URL(string: "http://192.168.0.129:8000/")!
-//        let urlRequest = URLRequest(url: url)
-//        let (data, _) = try await URLSession.shared.data(for: urlRequest)
-//        let dataObject = try JSONDecoder().decode([VideoScheme].self, from: data)
-        
-        // Temporal fix
-        let dataObject = VideoScheme.sample
-        
-        for video in dataObject {
+    func fetchInfo() {
+        for index in 0..<listOffset {
             let videoPlayer = AVQueuePlayer()
-            let viewModel = VideoViewModel(videoPlayer:videoPlayer, video: video)
-            listOfVideosVM.append(viewModel)
+            let viewModel = VideoViewModel(videoPlayer: videoPlayer, video: VideoScheme.sample[index])
+            feedVideoItems.append(VideoView(viewModel: viewModel))
         }
-        self.feedVideoItems =  dataObject
         self.currentIndex = .zero
     }
+
 }
