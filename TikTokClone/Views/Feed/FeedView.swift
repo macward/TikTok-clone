@@ -64,7 +64,10 @@ struct FeedView: View {
         .ignoresSafeArea()
         .onAppear() {
             viewModel.addSubscriber()
-            viewModel.fetchInfo()
+            //viewModel.fetchInfo()
+        }
+        .task {
+            await viewModel.getFeedData()
         }
     }
 }

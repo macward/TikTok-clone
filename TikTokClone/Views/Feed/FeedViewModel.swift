@@ -19,6 +19,7 @@ class FeedViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private var numberOfVideosToLoad: Int = 2
     private var maxIndexLoaded: Int = 0
+    private var videoModelList: [VideoScheme] = []
     
     func addSubscriber() {
         
@@ -26,18 +27,7 @@ class FeedViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { newValue in
                 if newValue < 0 { return }
-                
-                let nextIndex = (self.currentIndex % VideoScheme.sample.count) + self.numberOfVideosToLoad
-                
-                if self.feedVideoItems.count <= VideoScheme.sample.count &&
-                    nextIndex < (VideoScheme.sample.count) &&
-                    nextIndex > self.maxIndexLoaded {
-                    self.maxIndexLoaded = nextIndex
-                    let viewModel: VideoViewModel = .init(videoPlayer: AVQueuePlayer(),
-                                                          video: VideoScheme.sample[nextIndex])
-                    self.feedVideoItems.append(.init(viewModel: viewModel))
-                }
-                
+                self.appendVideo()
                 self.playVideoWith(index: newValue)
             }
             .store(in: &subscriptions)
@@ -51,7 +41,15 @@ class FeedViewModel: ObservableObject {
     }
     
     private func appendVideo() {
-        
+        let nextIndex = (self.currentIndex % videoModelList.count) + self.numberOfVideosToLoad
+        if self.feedVideoItems.count <= videoModelList.count &&
+            nextIndex < (videoModelList.count) &&
+            nextIndex > self.maxIndexLoaded {
+            self.maxIndexLoaded = nextIndex
+            let viewModel: VideoViewModel = .init(videoPlayer: AVQueuePlayer(),
+                                                  video: videoModelList[nextIndex])
+            self.feedVideoItems.append(.init(viewModel: viewModel))
+        }
     }
     
     func nextVideo() {
@@ -78,10 +76,26 @@ class FeedViewModel: ObservableObject {
     func fetchInfo() {
         for index in 0..<numberOfVideosToLoad {
             let videoPlayer = AVQueuePlayer()
-            let viewModel = VideoViewModel(videoPlayer: videoPlayer, video: VideoScheme.sample[index])
+            let viewModel = VideoViewModel(videoPlayer: videoPlayer, video: videoModelList[index])
             feedVideoItems.append(VideoView(viewModel: viewModel))
         }
         self.currentIndex = .zero
+    }
+    
+    func getFeedData() async {
+        let service = DataService()
+        do {
+            self.videoModelList = try await service.feedInformation()
+            self.fetchInfo()
+        } catch NetworkError.BadFormat {
+            print("Bad format")
+        } catch NetworkError.BadResponse {
+            print("Bad response")
+        } catch {
+            print("Unknown error")
+        }
+        
+        
     }
 
 }
