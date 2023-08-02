@@ -40,27 +40,27 @@ extension VideoScheme {
 
 extension VideoScheme {
     static let sample: [VideoScheme] = [
-        VideoScheme(username: "Video 1 - Index 0", description: "Amazing travel adventure!", hashtags: "travel, adventure", videoUrl: "01"),
-        VideoScheme(username: "Video 2 - Index 1", description: "Cute kittens playing!", hashtags: "animals, kittens", videoUrl: "02"),
-        VideoScheme(username: "Video 3 - Index 2", description: "Delicious cooking recipe!", hashtags: "cooking, recipe", videoUrl: "03"),
-        VideoScheme(username: "Video 4 - Index 3", description: "Incredible nature scenery!", hashtags: "nature,scenery", videoUrl: "04"),
-        VideoScheme(username: "Video 5 - Index 4", description: "Hilarious comedy skit!", hashtags: "comedy, funny", videoUrl: "05"),
-        VideoScheme(username: "Video 6 - Index 5", description: "Fascinating science experiment!", hashtags: "science, experiment", videoUrl: "06"),
-        VideoScheme(username: "Video 7 - Index 6", description: "Breathtaking drone footage!", hashtags: "drones, aerial", videoUrl: "07"),
-        VideoScheme(username: "Video 8 - Index 7", description: "Artistic drawing time-lapse!", hashtags: "art, drawing", videoUrl: "08"),
-        VideoScheme(username: "Video 9 - Index 8", description: "Fitness workout routine!", hashtags: "fitness, workout", videoUrl: "09"),
+//        VideoScheme(username: "Video 1 - Index 0", description: "Amazing travel adventure!", hashtags: "travel, adventure", videoUrl: "01"),
+//        VideoScheme(username: "Video 2 - Index 1", description: "Cute kittens playing!", hashtags: "animals, kittens", videoUrl: "02"),
+//        VideoScheme(username: "Video 3 - Index 2", description: "Delicious cooking recipe!", hashtags: "cooking, recipe", videoUrl: "03"),
+//        VideoScheme(username: "Video 4 - Index 3", description: "Incredible nature scenery!", hashtags: "nature,scenery", videoUrl: "04"),
+//        VideoScheme(username: "Video 5 - Index 4", description: "Hilarious comedy skit!", hashtags: "comedy, funny", videoUrl: "05"),
+//        VideoScheme(username: "Video 6 - Index 5", description: "Fascinating science experiment!", hashtags: "science, experiment", videoUrl: "06"),
+//        VideoScheme(username: "Video 7 - Index 6", description: "Breathtaking drone footage!", hashtags: "drones, aerial", videoUrl: "07"),
+//        VideoScheme(username: "Video 8 - Index 7", description: "Artistic drawing time-lapse!", hashtags: "art, drawing", videoUrl: "08"),
+//        VideoScheme(username: "Video 9 - Index 8", description: "Fitness workout routine!", hashtags: "fitness, workout", videoUrl: "09"),
         VideoScheme(username: "Video 10 - Index 9", description: "Mesmerizing music performance!", hashtags: "music, performance", videoUrl: "10"),
         VideoScheme(username: "Video 11 - Index 10", description: "Amazing travel adventure!", hashtags: "travel, adventure", videoUrl: "11"),
         VideoScheme(username: "Video 12 - Index 11", description: "Cute kittens playing!", hashtags: "animals, kittens", videoUrl: "12"),
         VideoScheme(username: "Video 13 - Index 12", description: "Delicious cooking recipe!", hashtags: "cooking, recipe", videoUrl: "13"),
         VideoScheme(username: "Video 14 - Index 13", description: "Incredible nature scenery!", hashtags: "nature,scenery", videoUrl: "14"),
         VideoScheme(username: "Video 15 - Index 14", description: "Hilarious comedy skit!", hashtags: "comedy, funny", videoUrl: "15"),
-        VideoScheme(username: "Video 16 - Index 15", description: "Fascinating science experiment!", hashtags: "science, experiment", videoUrl: "16"),
-        VideoScheme(username: "Video 17 - Index 16", description: "Breathtaking drone footage!", hashtags: "drones, aerial", videoUrl: "17"),
-        VideoScheme(username: "Video 18 - Index 17", description: "Artistic drawing time-lapse!", hashtags: "art, drawing", videoUrl: "18"),
-        VideoScheme(username: "Video 19 - Index 18", description: "Fitness workout routine!", hashtags: "fitness, workout", videoUrl: "19"),
-        VideoScheme(username: "Video 20 - Index 19", description: "Mesmerizing music performance!", hashtags: "music, performance", videoUrl: "20"),
-        VideoScheme(username: "Video 21 - Index 20", description: "Artistic drawing time-lapse!", hashtags: "art, drawing", videoUrl: "21")
+//        VideoScheme(username: "Video 16 - Index 15", description: "Fascinating science experiment!", hashtags: "science, experiment", videoUrl: "16"),
+//        VideoScheme(username: "Video 17 - Index 16", description: "Breathtaking drone footage!", hashtags: "drones, aerial", videoUrl: "17"),
+//        VideoScheme(username: "Video 18 - Index 17", description: "Artistic drawing time-lapse!", hashtags: "art, drawing", videoUrl: "18"),
+//        VideoScheme(username: "Video 19 - Index 18", description: "Fitness workout routine!", hashtags: "fitness, workout", videoUrl: "19"),
+//        VideoScheme(username: "Video 20 - Index 19", description: "Mesmerizing music performance!", hashtags: "music, performance", videoUrl: "20"),
+//        VideoScheme(username: "Video 21 - Index 20", description: "Artistic drawing time-lapse!", hashtags: "art, drawing", videoUrl: "21")
     ]
     
     static let sampleMix: [VideoScheme] = [
