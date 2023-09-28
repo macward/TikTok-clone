@@ -13,18 +13,11 @@ enum NetworkError: Error {
     case Unknown
 }
 
-class DataService {
+class Api {
     
-    func feedInformation() async throws -> [VideoScheme] {
+    static func feed() async throws -> [VideoScheme] {
         
-        let urlStrnig =  "https://firebasestorage.googleapis.com/v0/b/switchat-1d16f.appspot.com/o/media%2Fmedia_response.json?alt=media&token=c19c5f0c-78dc-4a5d-b231-2608b11f049d"
-        
-        let queryItems = [URLQueryItem(name: "alt", value: "media")]
-        
-        var urlComponents = URLComponents(string: urlStrnig)!
-        urlComponents.queryItems = queryItems
-        
-        let request = URLRequest(url: urlComponents.url!)
+        let request = URLRequest(url: URL(string: URL_FEED)!)
 
         let (data, _) = try await URLSession.shared.data(for: request)
         

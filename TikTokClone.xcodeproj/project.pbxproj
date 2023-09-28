@@ -47,6 +47,7 @@
 		50997AF32A70B2250084F721 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50997AF22A70B2250084F721 /* VideoView.swift */; };
 		50997AF62A70B2700084F721 /* OffsetY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50997AF52A70B2700084F721 /* OffsetY.swift */; };
 		50997AFD2A70B3110084F721 /* VideoScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50997AFC2A70B3110084F721 /* VideoScheme.swift */; };
+		50F356132AC6311C006AC58F /* CONST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F356122AC6311C006AC58F /* CONST.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		50997AF22A70B2250084F721 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		50997AF52A70B2700084F721 /* OffsetY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetY.swift; sourceTree = "<group>"; };
 		50997AFC2A70B3110084F721 /* VideoScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoScheme.swift; sourceTree = "<group>"; };
+		50F356122AC6311C006AC58F /* CONST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONST.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				50820DE22A73CAFD0069169D /* Extensions */,
 				50997AFA2A70B2DA0084F721 /* Helpers */,
 				50997AEA2A6F31680084F721 /* Modifiers */,
+				50F356122AC6311C006AC58F /* CONST.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				5001E2192A7264CE00224CF5 /* Notifications.swift in Sources */,
 				50997AFD2A70B3110084F721 /* VideoScheme.swift in Sources */,
 				50997AF62A70B2700084F721 /* OffsetY.swift in Sources */,
+				50F356132AC6311C006AC58F /* CONST.swift in Sources */,
 				50997AEC2A6F317B0084F721 /* TextModifiers.swift in Sources */,
 				50997AF32A70B2250084F721 /* VideoView.swift in Sources */,
 				506911342A7A3B320047FC99 /* DataService.swift in Sources */,
@@ -514,7 +518,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TikTokClone/Preview Content\"";
-				DEVELOPMENT_TEAM = AAL663Y363;
+				DEVELOPMENT_TEAM = ZVW35G37KX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikTokClone/Info.plist;
@@ -528,7 +532,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.zibra.TikTokClone;
+				PRODUCT_BUNDLE_IDENTIFIER = co.zibra.TikTokCloneMax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -544,7 +548,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TikTokClone/Preview Content\"";
-				DEVELOPMENT_TEAM = AAL663Y363;
+				DEVELOPMENT_TEAM = ZVW35G37KX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikTokClone/Info.plist;
@@ -558,7 +562,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.zibra.TikTokClone;
+				PRODUCT_BUNDLE_IDENTIFIER = co.zibra.TikTokCloneMax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

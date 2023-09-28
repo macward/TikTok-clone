@@ -83,9 +83,8 @@ class FeedViewModel: ObservableObject {
     }
     
     func getFeedData() async {
-        let service = DataService()
         do {
-            self.videoModelList = try await service.feedInformation()
+            self.videoModelList = try await Api.feed()
             self.fetchInfo()
         } catch NetworkError.BadFormat {
             print("Bad format")
@@ -94,8 +93,6 @@ class FeedViewModel: ObservableObject {
         } catch {
             print("Unknown error")
         }
-        
-        
     }
 
 }
