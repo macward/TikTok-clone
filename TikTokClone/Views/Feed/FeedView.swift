@@ -22,8 +22,7 @@ struct FeedView: View {
                 ScrollView(.vertical) {
                     LazyVStack(spacing: 0) {
                         ForEach(0..<viewModel.feedVideoItems.count, id: \.self) { index in
-                            
-                            VideoView(viewModel: viewModel.createViewModel(for: index))
+                            viewModel.feedVideoItems[index]
                                 .edgesIgnoringSafeArea(.top)
                                 .containerRelativeFrame([.horizontal, .vertical])
                                 .offsetY { rect in
@@ -65,9 +64,10 @@ struct FeedView: View {
         .ignoresSafeArea()
         .onAppear() {
             viewModel.addSubscriber()
+            //viewModel.fetchInfo()
         }
         .task {
-            try? await viewModel.fetchInfo()
+            await viewModel.getFeedData()
         }
     }
 }

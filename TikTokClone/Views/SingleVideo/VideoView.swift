@@ -8,7 +8,9 @@
 import SwiftUI
 import AVKit
 
-struct VideoView: View {
+struct VideoView: View, Identifiable {
+    
+    let id: UUID = UUID()
     
     @State private var isMoving: Bool = false
     @ObservedObject var viewModel: VideoViewModel
@@ -28,7 +30,6 @@ struct VideoView: View {
                                     .font(.system(size: 60))
                                     .foregroundStyle(Color.white).opacity(0.4)
                             }
-                            
                         }
                     // Display a video overlay using the VideoOvelay() view builder with opacity based on isMoving state.
                     VideoOvelay(video: viewModel.video)

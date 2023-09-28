@@ -13,7 +13,7 @@ import Combine
 class VideoViewModel: ObservableObject {
     
     var video: VideoScheme
-    private var player: AVQueuePlayer
+    private var player: AVPlayer
     private var playerLooper: AVPlayerLooper
     @Published var isPlaying: Bool = true
     private var cancellable = Set<AnyCancellable>()
@@ -38,7 +38,7 @@ class VideoViewModel: ObservableObject {
         isPlaying = false
     }
     
-    func playerInstance() -> AVQueuePlayer {
+    func playerInstance() -> AVPlayer {
         return self.player
     }
     
