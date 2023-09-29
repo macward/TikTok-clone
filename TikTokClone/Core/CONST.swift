@@ -7,4 +7,4 @@
 
 import Foundation
 
-let URL_FEED = "https://firebasestorage.googleapis.com/v0/b/switchat-1d16f.appspot.com/o/media%2Fmedia_response.json?alt=media&token=c19c5f0c-78dc-4a5d-b231-2608b11f049d"
+let URL_FEED = "https://firebasestorage.googleapis.com/v0/b/switchat-1d16f.appspot.com/o/media%2Ftiktok-feed-mock.json?alt=media&token=8f4c7c42-3665-4559-a957-1517da5ea89a&_gl=1*1lqt2zh*_ga*MTIwOTU4MjU2OC4xNjgxMTgwMDk2*_ga_CW55HF8NVT*MTY5NjAwOTMwNS4zMy4xLjE2OTYwMDk2NTAuMzUuMC4w"

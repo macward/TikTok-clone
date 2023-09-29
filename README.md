@@ -1,0 +1,1 @@
+![cover image](https://firebasestorage.googleapis.com/v0/b/switchat-1d16f.appspot.com/o/media%2Ftiktok-clone-slider.png?alt=media&token=0024fe25-3fb6-428c-8e7a-ca997a868165&_gl=1*gtz4vt*_ga*MTIwOTU4MjU2OC4xNjgxMTgwMDk2*_ga_CW55HF8NVT*MTY5NjAwOTMwNS4zMy4xLjE2OTYwMTAwNjAuNTcuMC4w)

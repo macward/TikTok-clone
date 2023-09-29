@@ -10,11 +10,11 @@ import AVKit
 
 struct FeedView: View {
     
-    @StateObject private var viewModel = FeedViewModel()
-    @State private var scrollProgress: CGFloat = .zero
-    @State private var blockNotification: Bool = false
+    @ObservedObject private var viewModel: FeedViewModel
     
-    @EnvironmentObject var feedManager: FeedManager
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -27,15 +27,11 @@ struct FeedView: View {
                                 .containerRelativeFrame([.horizontal, .vertical])
                                 .offsetY { rect in
                                     if index == viewModel.currentIndex {
-                                        // rect.midY and proxy.size.height are the same
                                         let centerOffset = rect.midY - (proxy.size.height / 2)
                                         let progress = centerOffset / (proxy.size.height / 2)
-                                        
                                         if Double(1.6)...Double(1.9) ~= progress {
-                                            blockNotification = true
                                             viewModel.prevVideo()
                                         } else if Double(-1.9)...Double(-1.6) ~= progress {
-                                            blockNotification = true
                                             viewModel.nextVideo()
                                         }
                                     }
@@ -64,7 +60,6 @@ struct FeedView: View {
         .ignoresSafeArea()
         .onAppear() {
             viewModel.addSubscriber()
-            //viewModel.fetchInfo()
         }
         .task {
             await viewModel.getFeedData()
@@ -73,5 +68,5 @@ struct FeedView: View {
 }
 
 #Preview {
-    FeedView()
+    FeedView(viewModel: FeedViewModel())
 }

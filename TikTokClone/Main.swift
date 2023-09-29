@@ -15,10 +15,8 @@ class FeedManager: ObservableObject {
 struct TikTokCloneApp: App {
     var body: some Scene {
         
-        @StateObject var feedManager = FeedManager()
-        
         WindowGroup {
-            FeedView()
+            FeedView(viewModel: FeedViewModel())
                 .preferredColorScheme(.dark)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
                     URLCache.shared.removeAllCachedResponses()
@@ -27,7 +25,6 @@ struct TikTokCloneApp: App {
                     print("UIApplication: Background")
                     URLCache.shared.removeAllCachedResponses()
                 })
-                .environmentObject(feedManager)
         }
     }
 }

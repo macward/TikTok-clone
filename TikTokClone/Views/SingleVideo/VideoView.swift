@@ -72,6 +72,3 @@ struct VideoView: View, Identifiable {
     }
 }
 
-//#Preview {
-//    VideoView(viewModel: VideoViewModel(video: VideoScheme.sample.first!))
-//}
