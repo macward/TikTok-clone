@@ -8,6 +8,7 @@
 import Foundation
 import AVKit
 import Combine
+import SwiftUI
  
 class FeedViewModel: ObservableObject {
     
@@ -60,6 +61,15 @@ class FeedViewModel: ObservableObject {
     func prevVideo() {
         if currentIndex == .zero { return }
         currentIndex.decrease()
+    }
+    
+    public func handleGesture(_ gesture: UIPanGestureRecognizer) {
+        let offsetY = gesture.translation(in: gesture.view).y
+        if offsetY > 0 && gesture.state == .ended {
+            self.prevVideo()
+        } else if offsetY < 0 && gesture.state == .ended {
+            self.nextVideo()
+        }
     }
     
     private func pauseAllVideos() {

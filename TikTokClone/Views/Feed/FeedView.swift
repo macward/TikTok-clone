@@ -10,11 +10,12 @@ import AVKit
 
 struct FeedView: View {
     
-    @StateObject private var viewModel = FeedViewModel()
-    @State private var scrollProgress: CGFloat = .zero
-    @State private var blockNotification: Bool = false
+    @ObservedObject private var viewModel: FeedViewModel
+    @State private var gesture: UIGestureRecognizer?
     
-    @EnvironmentObject var feedManager: FeedManager
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -30,12 +31,11 @@ struct FeedView: View {
                                         // rect.midY and proxy.size.height are the same
                                         let centerOffset = rect.midY - (proxy.size.height / 2)
                                         let progress = centerOffset / (proxy.size.height / 2)
-                                        
                                         if Double(1.6)...Double(1.9) ~= progress {
-                                            blockNotification = true
+                                            if gesture?.state != .ended { return }
                                             viewModel.prevVideo()
                                         } else if Double(-1.9)...Double(-1.6) ~= progress {
-                                            blockNotification = true
+                                            if gesture?.state != .ended { return }
                                             viewModel.nextVideo()
                                         }
                                     }
@@ -43,6 +43,12 @@ struct FeedView: View {
                         }
                     }
                     .scrollTargetLayout()
+                }
+                .background {
+                    CustomGesture {
+                        gesture = $0
+                        //viewModel.handleGesture($0)
+                    }
                 }
                 .scrollTargetBehavior(.paging)
                 .ignoresSafeArea()
@@ -70,8 +76,17 @@ struct FeedView: View {
             await viewModel.getFeedData()
         }
     }
+    
+    func handleState(_ gesture: UIPanGestureRecognizer) {
+//        let offsetY = gesture.translation(in: gesture.view).y
+//        if offsetY > 0 && gesture.state == .ended {
+//            viewModel.prevVideo()
+//        } else if offsetY < 0 && gesture.state == .ended {
+//            viewModel.nextVideo()
+//        }
+    }
 }
 
 #Preview {
-    FeedView()
+    FeedView(viewModel: FeedViewModel())
 }

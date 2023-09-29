@@ -48,6 +48,7 @@
 		50997AF62A70B2700084F721 /* OffsetY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50997AF52A70B2700084F721 /* OffsetY.swift */; };
 		50997AFD2A70B3110084F721 /* VideoScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50997AFC2A70B3110084F721 /* VideoScheme.swift */; };
 		50F356132AC6311C006AC58F /* CONST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F356122AC6311C006AC58F /* CONST.swift */; };
+		50F356152AC636D6006AC58F /* CustomPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F356142AC636D6006AC58F /* CustomPanGesture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		50997AF52A70B2700084F721 /* OffsetY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetY.swift; sourceTree = "<group>"; };
 		50997AFC2A70B3110084F721 /* VideoScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoScheme.swift; sourceTree = "<group>"; };
 		50F356122AC6311C006AC58F /* CONST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONST.swift; sourceTree = "<group>"; };
+		50F356142AC636D6006AC58F /* CustomPanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPanGesture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				50997AE32A6F2A0E0084F721 /* FeedView.swift */,
 				5001E2082A71E3CB00224CF5 /* FeedViewModel.swift */,
+				50F356142AC636D6006AC58F /* CustomPanGesture.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				50F356132AC6311C006AC58F /* CONST.swift in Sources */,
 				50997AEC2A6F317B0084F721 /* TextModifiers.swift in Sources */,
 				50997AF32A70B2250084F721 /* VideoView.swift in Sources */,
+				50F356152AC636D6006AC58F /* CustomPanGesture.swift in Sources */,
 				506911342A7A3B320047FC99 /* DataService.swift in Sources */,
 				50820DE42A73CB0E0069169D /* IntExtensions.swift in Sources */,
 				50997ACA2A6F15B50084F721 /* Main.swift in Sources */,
