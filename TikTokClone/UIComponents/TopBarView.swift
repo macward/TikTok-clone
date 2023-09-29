@@ -11,17 +11,21 @@ struct TopBarView: View {
     var body: some View {
         VStack {
             HStack {
-                Image(systemName: "play.tv")
+                Image("live")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .foregroundStyle(Color.white)
-                    .fontWeight(.semibold)
-                    .font(.system(size: 24))
+                    .frame(width: 30)
+                    
                 
                 Spacer()
                 HStack(spacing: 16) {
                     Text("Cerca")
                         .foregroundStyle(Color("InactiveText"))
+                        .opacity(0.6)
                     Text("Siguiendo")
                         .foregroundStyle(Color("InactiveText"))
+                        .opacity(0.6)
                     Text("Para ti")
                 }
                 .lineSpacing(0.8)

@@ -11,7 +11,6 @@ import AVKit
 struct FeedView: View {
     
     @ObservedObject private var viewModel: FeedViewModel
-    @State private var gesture: UIGestureRecognizer?
     
     init(viewModel: FeedViewModel) {
         self.viewModel = viewModel
@@ -28,14 +27,11 @@ struct FeedView: View {
                                 .containerRelativeFrame([.horizontal, .vertical])
                                 .offsetY { rect in
                                     if index == viewModel.currentIndex {
-                                        // rect.midY and proxy.size.height are the same
                                         let centerOffset = rect.midY - (proxy.size.height / 2)
                                         let progress = centerOffset / (proxy.size.height / 2)
                                         if Double(1.6)...Double(1.9) ~= progress {
-                                            if gesture?.state != .ended { return }
                                             viewModel.prevVideo()
                                         } else if Double(-1.9)...Double(-1.6) ~= progress {
-                                            if gesture?.state != .ended { return }
                                             viewModel.nextVideo()
                                         }
                                     }
@@ -43,12 +39,6 @@ struct FeedView: View {
                         }
                     }
                     .scrollTargetLayout()
-                }
-                .background {
-                    CustomGesture {
-                        gesture = $0
-                        //viewModel.handleGesture($0)
-                    }
                 }
                 .scrollTargetBehavior(.paging)
                 .ignoresSafeArea()
@@ -70,20 +60,10 @@ struct FeedView: View {
         .ignoresSafeArea()
         .onAppear() {
             viewModel.addSubscriber()
-            //viewModel.fetchInfo()
         }
         .task {
             await viewModel.getFeedData()
         }
-    }
-    
-    func handleState(_ gesture: UIPanGestureRecognizer) {
-//        let offsetY = gesture.translation(in: gesture.view).y
-//        if offsetY > 0 && gesture.state == .ended {
-//            viewModel.prevVideo()
-//        } else if offsetY < 0 && gesture.state == .ended {
-//            viewModel.nextVideo()
-//        }
     }
 }
 
