@@ -33,8 +33,8 @@ struct VideoScheme: Codable, Identifiable, Equatable {
 
 extension VideoScheme {
     var bundleUrl: URL {
-        //Bundle.main.url(forResource: self.videoUrl, withExtension: "mp4")!
-        URL(string: self.videoUrl)!
+        Bundle.main.url(forResource: self.videoUrl, withExtension: "mp4")!
+        //URL(string: self.videoUrl)!
     }
 }
 
